@@ -91,3 +91,14 @@ def test_resumen_excluye_personal_y_dudoso():
     movs, _ = parse_rules(TXT)
     r = resumen(a_dataframe(clasificar(movs)))
     assert r["ventas"] == 6.5 and r["gastos"] == 1250.0 and r["personal"] == 100.0 and r["dudosos"] == 1
+
+
+def test_costo_trabajadores_considera_dias_por_semana():
+    import pandas as pd
+
+    from ai.report import costo_trabajadores
+    t = pd.DataFrame({"trabajador": ["A", "B"], "pago_hora": [6.0, 5.0],
+                      "horas_dia": [8.0, 4.0], "dias_semana": [6.0, 3.0]})
+    c = costo_trabajadores(t, 14)  # 2 semanas
+    assert list(c["dias_trabajados"]) == [12.0, 6.0]
+    assert list(c["costo"]) == [6 * 8 * 12, 5 * 4 * 6]

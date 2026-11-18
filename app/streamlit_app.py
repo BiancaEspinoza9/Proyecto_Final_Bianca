@@ -13,7 +13,7 @@ import streamlit as st
 
 from ai.classifier import CATEGORIAS, clasificar, clave_label
 from ai.parser import Movimiento, parse
-from ai.report import a_dataframe, por_dia, resumen
+from ai.report import a_dataframe, costo_trabajadores, dias_del_periodo, por_dia, resumen
 
 SAMPLE = Path(__file__).resolve().parents[1] / "data" / "sample_movimientos.txt"
 
@@ -94,11 +94,30 @@ if n_fict:
                f"{len(df) - n_fict} de tu captura. Las cifras mezclan ambos. "
                "Para ver solo tu captura, desmarca la opción en la barra lateral.")
 
+dias_periodo = dias_del_periodo(df)
+with st.expander("👷 Pago a trabajadores (opcional): ajusta cuánto ganan por hora y cuántos días van"):
+    st.caption("Esto NO sale de Yape: lo escribes tú. Costo = pago por hora × horas por día × días trabajados "
+               f"(días por semana × {dias_periodo} días del periodo ÷ 7). Las filas de abajo son un EJEMPLO inventado; "
+               "edítalas, agrega o borra filas. Si alguien no va todos los días, baja sus 'días por semana'.")
+    base = pd.DataFrame({"trabajador": ["Trabajador 1 (ejemplo)", "Trabajador 2 (ejemplo)"],
+                         "pago_hora": [6.0, 5.0], "horas_dia": [8.0, 4.0], "dias_semana": [6.0, 3.0]})
+    trab = st.data_editor(base, num_rows="dynamic", hide_index=True, width="stretch", key="trabajadores",
+                          column_config={"trabajador": "Nombre", "pago_hora": st.column_config.NumberColumn("S/ por hora", min_value=0.0),
+                                         "horas_dia": st.column_config.NumberColumn("Horas por día", min_value=0.0, max_value=24.0),
+                                         "dias_semana": st.column_config.NumberColumn("Días por semana", min_value=0.0, max_value=7.0)})
+    costo_t = costo_trabajadores(trab, dias_periodo)
+    pago_trab = round(float(costo_t["costo"].sum()), 2)
+    if not costo_t.empty:
+        st.dataframe(costo_t[["trabajador", "dias_trabajados", "costo"]], hide_index=True, width="stretch")
+
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Ventas del negocio", f"S/ {r['ventas']:,.2f}")
 c2.metric("Gastos del negocio", f"S/ {r['gastos']:,.2f}")
-c3.metric("Utilidad", f"S/ {r['utilidad']:,.2f}")
-c4.metric("Personal (excluido)", f"S/ {r['personal']:,.2f}")
+c3.metric("Utilidad (ventas − gastos)", f"S/ {r['utilidad']:,.2f}")
+c4.metric("Personal de la familia (excluido)", f"S/ {r['personal']:,.2f}")
+d1, d2 = st.columns(2)
+d1.metric("Pago a trabajadores", f"S/ {pago_trab:,.2f}")
+d2.metric("Utilidad después de pagar trabajadores", f"S/ {r['utilidad'] - pago_trab:,.2f}")
 
 dudosos = df[df.categoria == "dudoso"]
 st.subheader(f"3. Confirma lo dudoso ({len(dudosos)})")
