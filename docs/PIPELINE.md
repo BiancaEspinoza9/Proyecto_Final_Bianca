@@ -96,7 +96,7 @@ Cada fila guarda también el **motivo** ("la nota 'pan' parece una venta"), para
 
 - **Pruebas automáticas** (`tests/test_core.py`, 7 pruebas): lectura de texto, clasificación, memoria por persona, lista de familia, resumen, y lectura de filas del OCR (con los textos que devolvió el OCR sobre una captura real, sin subir la imagen).
 - **Una captura real propia** (nombres tapados): los 11 movimientos se leyeron con monto, signo, fecha y hora correctos.
-- **Datos sintéticos** (`data/make_synthetic.py`): 194 movimientos de una bodega inventada.
+- **Datos sintéticos** (`data/make_synthetic.py`): 380 movimientos (60 días) de una bodega inventada.
 
 ## 6. Límites que conviene decir con honestidad
 

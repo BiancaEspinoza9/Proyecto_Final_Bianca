@@ -65,7 +65,7 @@ if fuente == "Subir captura de Yape":
         no_leidas.extend(n)
     completar_demo = st.sidebar.checkbox(
         "Completar con historial FICTICIO de ejemplo", value=True,
-        help="Una captura trae pocos días. Esto agrega ~190 movimientos inventados (bodega 'Don Lucho') "
+        help="Una captura trae pocos días. Esto agrega ~400 movimientos inventados (bodega 'Don Lucho') "
              "para que el reporte y el gráfico se vean completos. Desmárcalo para ver solo tu captura.")
     if completar_demo and movs:
         from ai.demo import completar
@@ -101,7 +101,7 @@ c3.metric("Utilidad", f"S/ {r['utilidad']:,.2f}")
 c4.metric("Personal (excluido)", f"S/ {r['personal']:,.2f}")
 
 dudosos = df[df.categoria == "dudoso"]
-st.subheader(f"2. Confirma lo dudoso ({len(dudosos)})")
+st.subheader(f"3. Confirma lo dudoso ({len(dudosos)})")
 if dudosos.empty:
     st.success("No hay movimientos dudosos.")
 else:
@@ -125,7 +125,7 @@ else:
             st.session_state.labels[clave_label(mov)] = fila["tu_respuesta"]
         st.rerun()
 
-st.subheader("3. Ventas y gastos por dia")
+st.subheader("4. Ventas y gastos por dia")
 tabla = por_dia(df)
 if not tabla.empty:
     st.bar_chart(tabla)
