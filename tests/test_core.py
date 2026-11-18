@@ -71,6 +71,13 @@ def test_sin_nombre_no_mezcla_desconocidos():
     assert filas[0]["categoria"] == "personal" and filas[1]["categoria"] == "dudoso"
 
 
+def test_lista_de_familia_marca_personal():
+    from ai.parser import Movimiento
+    m = Movimiento("16/11/2026", "13:19", "recibido", "Teresa Diaz", 200.0)
+    assert clasificar([m])[0]["categoria"] == "dudoso"
+    assert clasificar([m], familia={"teresa diaz"})[0]["categoria"] == "personal"
+
+
 def test_resumen_excluye_personal_y_dudoso():
     movs, _ = parse_rules(TXT)
     r = resumen(a_dataframe(clasificar(movs)))

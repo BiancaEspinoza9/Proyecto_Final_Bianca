@@ -35,9 +35,12 @@ def _tiene(nota: str, palabras: tuple[str, ...]) -> bool:
     return any(p in n for p in palabras)
 
 
-def clasificar(movs: list[Movimiento], labels: dict | None = None) -> list[dict]:
-    """labels: {(tipo, contraparte_en_minusculas): categoria} que el usuario ya confirmo."""
+def clasificar(movs: list[Movimiento], labels: dict | None = None,
+              familia: set[str] | None = None) -> list[dict]:
+    """labels: {(tipo, contraparte_en_minusculas): categoria} que el usuario ya confirmo.
+    familia: nombres (en minusculas) que el usuario dijo que NO son del negocio."""
     labels = labels or {}
+    familia = familia or set()
     recibidos = Counter(m.contraparte.lower() for m in movs
                         if m.tipo == "recibido" and m.contraparte != SIN_NOMBRE)
     filas: list[dict] = []
@@ -45,6 +48,8 @@ def clasificar(movs: list[Movimiento], labels: dict | None = None) -> list[dict]
         clave = clave_label(m)
         if clave in labels:
             cat, motivo = labels[clave], "confirmado por ti antes"
+        elif m.contraparte.lower() in familia:
+            cat, motivo = "personal", "esta en tu lista de familia"
         elif _tiene(m.nota, KW_PERSONAL):
             cat, motivo = "personal", f"la nota '{m.nota}' parece personal"
         elif m.tipo == "enviado" and _tiene(m.nota, KW_GASTO):

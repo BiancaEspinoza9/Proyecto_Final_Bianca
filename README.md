@@ -15,12 +15,12 @@ Ayudamos a comerciantes pequeños que cobran por Yape a separar lo del negocio d
 - **Evidencia:** 3 conversaciones por WhatsApp en [`docs/research/`](docs/research/) ([resumen](docs/research/resumen.md)). Es una muestra pequeña de conocidos: confirma que el problema existe, no mide el mercado.
 
 ## 4. Solución e insight
-Flujo único: historial de Yape → movimientos estructurados → clasificación **venta / gasto del negocio / personal / dudoso** → el comerciante confirma solo lo dudoso (el sistema recuerda su respuesta por persona) → reporte de ventas, gastos y utilidad.
+Flujo único: **captura de la pantalla "Movimientos" de Yape** → OCR local → movimientos estructurados (persona, monto, fecha, enviado/recibido) → clasificación **venta / gasto del negocio / personal / dudoso** → el comerciante confirma lo dudoso (el sistema recuerda su respuesta por persona; puede indicar su lista de familia y usar sugerencias) → reporte de ventas, gastos y utilidad.
 
-Insight (hipótesis a validar): el problema no es leer el historial, sino que está mezclado con la vida personal. La herramienta no pretende acertar el 100 %: **pregunta cuando no sabe**.
+Insight (hipótesis a validar): el problema no es leer el historial, sino que está mezclado con la vida personal (3 de 3 entrevistados usan la misma cuenta para todo). La herramienta **no adivina quién es cliente y quién es familia**, porque eso solo lo sabe el dueño: propone, recuerda lo que el dueño responde y pregunta cuando no sabe.
 
 ## 5. Why now
-PENDIENTE de redactar con cuidado. Idea base: los LLM ya ordenan texto desordenado en JSON verificable, algo que antes exigía reglas rígidas por cada formato.
+*Borrador, a revisar por la founder.* Hace pocos años, leer una captura exigía un servicio de pago en la nube o entrenar un modelo propio. Hoy hay OCR abierto que corre en la laptop (sin enviar la captura a ningún servidor) y LLM pequeños que ordenan texto desordenado en JSON. Además, casi todo el cobro de estos negocios ya pasa por Yape/Plin (entrevistas: 40 % a 90 % de sus ventas), así que el historial digital ya contiene la información, solo que mezclada.
 
 ## 6. Demo
 - **URL pública:** PENDIENTE (despliegue previsto en Streamlit Community Cloud).
@@ -28,20 +28,25 @@ PENDIENTE de redactar con cuidado. Idea base: los LLM ya ordenan texto desordena
   ```bash
   pip install -r requirements.txt
   python data/make_synthetic.py      # genera datos de ejemplo (ya incluidos)
-  streamlit run app/streamlit_app.py
+  python -m streamlit run app/streamlit_app.py
   ```
+  En la app: *Origen → Subir captura de Yape* (o *Datos de ejemplo*).
 - **Capturas y diagrama:** PENDIENTE en `docs/`.
-- **Datos:** 100 % sintéticos (nombres inventados). No se usan datos de personas reales.
-- **Modelos/APIs:** reglas propias para el formato conocido; LLM de Anthropic (`claude-haiku-5-5`) con salida estructurada solo para líneas que las reglas no entienden, y con verificación literal de lo que devuelve.
+- **Datos:** el origen "Datos de ejemplo" es 100 % sintético (nombres inventados). La lectura de capturas se probó con **una captura real propia** (11 de 11 movimientos leídos correctamente), con los nombres tapados; esa captura no se sube al repo. No se usan datos de terceros.
+- **Modelos y por qué:**
+  - **RapidOCR (ONNX), local:** lee la captura en la laptop porque el historial es información financiera y no debe salir de ahí; además no requiere clave ni tiene costo.
+  - **Reglas propias** para clasificar: son predecibles y se pueden explicar ("lo clasifiqué así porque...").
+  - **LLM de Anthropic (`claude-haiku-5-5`)**, opcional, con salida estructurada para líneas que las reglas no entienden, y con verificación literal de lo que devuelve. No se ha probado contra la API real.
 
 ```
-historial (texto) ──► parser (reglas → LLM si hace falta) ──► verificación literal
+captura de Yape ──► OCR local (ai/ocr.py) ──► movimientos
+historial en texto ──► parser (reglas → LLM opcional, ai/parser.py) ──┘
                                    │
                                    ▼
-                     clasificador (venta / gasto / personal / dudoso)
-                                   │  confirmación del usuario (se recuerda)
+        clasificador (venta / gasto / personal / dudoso, ai/classifier.py)
+                                   │  confirmación del usuario (se recuerda por persona)
                                    ▼
-                      reporte + gráfico por día (Streamlit)
+               reporte + gráfico por día (Streamlit, ai/report.py)
 ```
 
 ## 7. Modelo de negocio
@@ -52,14 +57,19 @@ historial (texto) ──► parser (reglas → LLM si hace falta) ──► veri
 ## 8. Herramientas del curso
 | Herramienta | Dónde |
 |---|---|
-| LLM con salidas estructuradas (sesión 08) | [`ai/parser.py`](ai/parser.py) |
+| Document AI / OCR (sesión 10) | [`ai/ocr.py`](ai/ocr.py): lee la captura de Yape (en local, con RapidOCR) |
 | Dashboard (sesión 05) | [`app/streamlit_app.py`](app/streamlit_app.py), [`ai/report.py`](ai/report.py) |
-| Document AI / OCR (sesión 10) | PENDIENTE: lectura de capturas de pantalla |
+| LLM con salidas estructuradas (sesión 08) | [`ai/parser.py`](ai/parser.py): opcional, para líneas que las reglas no entienden; no probado aún con la API real |
+
+Por qué estas: el historial de Yape es una imagen (OCR), el resultado hay que verlo y confirmarlo (dashboard) y el texto desordenado se puede ordenar con un LLM. Dos de las tres están probadas de punta a punta; la del LLM está escrita pero sin probar.
 
 ## 9. Qué hizo el agente
-Claude Code generó el esqueleto inicial: parser, clasificador, reporte, app Streamlit, datos sintéticos, pruebas y esta plantilla de README. Las reglas de clasificación son una primera propuesta que debo revisar y ajustar con lo que digan los usuarios. PENDIENTE: ir actualizando esta sección con lo que cambie.
+Claude Code generó la primera versión del parser, el clasificador, el reporte, la app Streamlit, el lector de capturas (OCR), los datos sintéticos, las pruebas y la plantilla de este README. Yo hice las entrevistas con los usuarios, tomé la captura real con la que se probó el OCR, y decidí el problema, el cliente y el precio. Las reglas de clasificación son una primera propuesta del agente que debo entender y ajustar; las pruebas automáticas están en `tests/`.
 
 ## Limitaciones conocidas
-- El formato del historial es el de los datos sintéticos; hay que adaptarlo al formato real de Yape/Plin.
-- La clasificación por reglas es una primera versión: por eso existe la bandeja de "dudosos".
+- **La clasificación sigue pidiendo trabajo manual.** Sin nombres ni notas (por ejemplo, con nombres tapados) todos los movimientos salen "dudosos". Se reduce con sugerencias, con la lista de familia y recordando respuestas por persona, pero la primera vez el dueño tiene que decidir. No lo he medido: la afirmación "ahorra tiempo" es una hipótesis.
+- Los datos de ejemplo se generaron con las mismas palabras que usa el clasificador, así que su porcentaje de aciertos **no** mide qué tan bien funcionaría con datos reales.
+- El OCR se probó con **una** captura. Puede fallar con otras resoluciones o recortes.
+- La evidencia son 3 conversaciones con conocidos; el precio de S/ 15 es una hipótesis, no un pago real.
 - El modo LLM no se ha probado aún contra la API real.
+- Ideas descartadas por ahora: importar los contactos del celular (por privacidad y porque los nombres de Yape no coinciden con los guardados).

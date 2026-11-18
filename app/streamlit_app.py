@@ -38,6 +38,10 @@ with st.sidebar:
     fuente = st.radio("Origen", ["Subir captura de Yape", "Datos de ejemplo", "Pegar texto"])
     usar_llm = st.checkbox("Usar LLM para lineas que no entiendo", value=False,
                            help="Requiere ANTHROPIC_API_KEY en el entorno.")
+    st.header("2. Tu familia")
+    familia_txt = st.text_area("Nombres de familia o personas que NO son clientes (separa con comas)",
+                               placeholder="Teresa Diaz, Mario Diaz", height=80)
+    familia = {n.strip().lower() for n in familia_txt.split(",") if n.strip()}
     if st.button("Olvidar lo que confirme"):
         st.session_state.labels = {}
 
@@ -72,7 +76,7 @@ if no_leidas:
     with st.expander("Ver lineas no leidas"):
         st.code("\n".join(no_leidas))
 
-df = a_dataframe(clasificar(movs, st.session_state.labels))
+df = a_dataframe(clasificar(movs, st.session_state.labels, familia))
 r = resumen(df)
 
 c1, c2, c3, c4 = st.columns(4)
