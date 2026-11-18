@@ -38,6 +38,8 @@ Insight (hipótesis a validar): el problema no es leer el historial, sino que es
   - **Reglas propias** para clasificar: son predecibles y se pueden explicar ("lo clasifiqué así porque...").
   - **LLM de Anthropic (`claude-haiku-5-5`)**, opcional, con salida estructurada para líneas que las reglas no entienden, y con verificación literal de lo que devuelve. No se ha probado contra la API real.
 
+Detalle paso a paso del pipeline, decisiones y límites: [`docs/PIPELINE.md`](docs/PIPELINE.md).
+
 ```
 captura de Yape ──► OCR local (ai/ocr.py) ──► movimientos
 historial en texto ──► parser (reglas → LLM opcional, ai/parser.py) ──┘
