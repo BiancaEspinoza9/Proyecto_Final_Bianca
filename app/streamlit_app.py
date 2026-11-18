@@ -100,7 +100,7 @@ with st.expander("👷 Pago a trabajadores (opcional): ajusta cuánto ganan por 
                f"(días por semana × {dias_periodo} días del periodo ÷ 7). Las filas de abajo son un EJEMPLO inventado; "
                "edítalas, agrega o borra filas. Si alguien no va todos los días, baja sus 'días por semana'.")
     base = pd.DataFrame({"trabajador": ["Trabajador 1 (ejemplo)", "Trabajador 2 (ejemplo)"],
-                         "pago_hora": [6.0, 5.0], "horas_dia": [8.0, 4.0], "dias_semana": [6.0, 3.0]})
+                         "pago_hora": [5.0, 5.0], "horas_dia": [4.0, 3.0], "dias_semana": [3.0, 2.0]})
     trab = st.data_editor(base, num_rows="dynamic", hide_index=True, width="stretch", key="trabajadores",
                           column_config={"trabajador": "Nombre", "pago_hora": st.column_config.NumberColumn("S/ por hora", min_value=0.0),
                                          "horas_dia": st.column_config.NumberColumn("Horas por día", min_value=0.0, max_value=24.0),
