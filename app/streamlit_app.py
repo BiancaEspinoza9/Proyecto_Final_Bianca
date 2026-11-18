@@ -88,9 +88,14 @@ if dudosos.empty:
 else:
     st.caption("Tu respuesta se recuerda por persona: la proxima vez no se vuelve a preguntar.")
     editor = dudosos[["fecha", "hora", "tipo", "contraparte", "monto", "nota"]].copy()
-    editor["tu_respuesta"] = None
+    # Sugerencias para que solo corrijas excepciones (son una adivinanza, no un dato).
+    st.caption("Ya puse una sugerencia: lo que recibes suele ser venta. Cámbiala donde no sea cierto.")
+    rapido = st.selectbox("Atajo para lo que ENVIASTE", ["(elegir uno por uno)", "personal", "gasto_negocio"])
+    editor["tu_respuesta"] = [
+        "venta" if t == "recibido" else (None if rapido.startswith("(") else rapido) for t in editor["tipo"]
+    ]
     editado = st.data_editor(
-        editor, hide_index=True, width="stretch",
+        editor, hide_index=True, width="stretch", key=f"editor_dudosos_{rapido}",
         column_config={"tu_respuesta": st.column_config.SelectboxColumn("¿Qué es?", options=CATEGORIAS)},
         disabled=["fecha", "hora", "tipo", "contraparte", "monto", "nota"],
     )
