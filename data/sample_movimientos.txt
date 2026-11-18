@@ -3,7 +3,7 @@
 12/09/2026 16:40 | recibido | Berta Soto | S/ 35.00 | 
 12/09/2026 19:40 | recibido | Walter Quiroz | S/ 8.00 | pan
 12/09/2026 19:52 | enviado | Teresa Diaz | S/ 40.00 | regalo cumple
-12/09/2026 06:30 | enviado | Bebidas Norte | S/ 250.00 | mercaderia
+12/09/2026 06:30 | enviado | Bebidas Norte | S/ 120.00 | mercaderia
 13/09/2026 13:15 | recibido | Hugo Valdez | S/ 15.00 | 
 13/09/2026 13:55 | recibido | Lucia Torres | S/ 15.00 | gaseosa
 13/09/2026 15:40 | recibido | Raul Campos | S/ 12.00 | menu
@@ -21,7 +21,7 @@
 15/09/2026 10:15 | recibido | Irma Lazo | S/ 35.00 | pollo
 15/09/2026 19:25 | recibido | Berta Soto | S/ 2.50 | 
 15/09/2026 11:15 | recibido | Walter Quiroz | S/ 4.00 | menu
-15/09/2026 08:16 | enviado | Electro Sur | S/ 450.00 | luz local
+15/09/2026 08:16 | enviado | Electro Sur | S/ 90.00 | luz local
 16/09/2026 13:55 | recibido | Irma Lazo | S/ 4.00 | cafe
 16/09/2026 11:25 | recibido | Hugo Valdez | S/ 4.00 | arroz
 16/09/2026 18:25 | recibido | Ana Huaman | S/ 35.00 | 
@@ -31,7 +31,7 @@
 17/09/2026 12:55 | recibido | Irma Lazo | S/ 6.50 | pollo
 17/09/2026 10:25 | recibido | Ana Huaman | S/ 12.00 | gaseosa
 17/09/2026 19:08 | enviado | Karen Diaz | S/ 40.00 | uber
-17/09/2026 06:30 | enviado | Abarrotes El Sol | S/ 250.00 | mercaderia
+17/09/2026 06:30 | enviado | Abarrotes El Sol | S/ 120.00 | mercaderia
 18/09/2026 19:10 | recibido | Nelly Ccori | S/ 2.50 | gaseosa
 18/09/2026 13:00 | recibido | Carlos Mamani | S/ 15.00 | cafe
 18/09/2026 12:00 | recibido | Rosa Quispe | S/ 35.00 | aceite
@@ -58,7 +58,7 @@
 22/09/2026 11:15 | recibido | Lucia Torres | S/ 2.50 | almuerzo
 22/09/2026 20:15 | recibido | Berta Soto | S/ 2.50 | pan
 22/09/2026 21:01 | recibido | Mario Diaz | S/ 50.00 | para el cine
-22/09/2026 06:30 | enviado | Bebidas Norte | S/ 250.00 | mercaderia
+22/09/2026 06:30 | enviado | Bebidas Norte | S/ 120.00 | mercaderia
 23/09/2026 16:55 | recibido | Carlos Mamani | S/ 22.00 | aceite
 23/09/2026 16:10 | recibido | Walter Quiroz | S/ 22.00 | cafe
 23/09/2026 08:55 | recibido | Hugo Valdez | S/ 12.00 | almuerzo
@@ -70,7 +70,7 @@
 24/09/2026 09:40 | recibido | Hugo Valdez | S/ 12.00 | pan
 24/09/2026 13:40 | recibido | Ana Huaman | S/ 15.00 | almuerzo
 24/09/2026 19:26 | enviado | Karen Diaz | S/ 20.00 | para mama
-24/09/2026 08:34 | enviado | Ferreteria Sur | S/ 35.00 | bolsas
+24/09/2026 08:34 | enviado | Ferreteria Sur | S/ 25.00 | bolsas
 25/09/2026 17:40 | recibido | Nelly Ccori | S/ 12.00 | 
 25/09/2026 09:10 | recibido | Rosa Quispe | S/ 2.50 | leche
 25/09/2026 15:25 | recibido | Berta Soto | S/ 12.00 | aceite
@@ -93,7 +93,7 @@
 27/09/2026 13:10 | recibido | Rosa Quispe | S/ 35.00 | almuerzo
 27/09/2026 12:40 | recibido | Pedro Rojas | S/ 2.50 | huevos
 27/09/2026 21:09 | recibido | Teresa Diaz | S/ 50.00 | para el cine
-27/09/2026 06:30 | enviado | Bebidas Norte | S/ 320.00 | mercaderia
+27/09/2026 06:30 | enviado | Bebidas Norte | S/ 150.00 | mercaderia
 28/09/2026 08:15 | recibido | Raul Campos | S/ 8.00 | pollo
 28/09/2026 09:40 | recibido | Luis Cardenas | S/ 6.50 | gaseosa
 28/09/2026 12:25 | recibido | Jorge Salas | S/ 4.00 | almuerzo
@@ -124,13 +124,13 @@
 02/10/2026 16:55 | recibido | Pedro Rojas | S/ 12.00 | gaseosa
 02/10/2026 16:25 | recibido | Ana Huaman | S/ 4.00 | pan
 02/10/2026 11:25 | recibido | Carlos Mamani | S/ 6.50 | pollo
-02/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 320.00 | mercaderia
+02/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 150.00 | mercaderia
 03/10/2026 12:15 | recibido | Irma Lazo | S/ 12.00 | menu
 03/10/2026 12:15 | recibido | Carlos Mamani | S/ 35.00 | huevos
 03/10/2026 07:25 | recibido | Hugo Valdez | S/ 12.00 | 
 03/10/2026 19:25 | recibido | Marta Vega | S/ 15.00 | leche
 03/10/2026 15:55 | recibido | Nelly Ccori | S/ 12.00 | arroz
-03/10/2026 08:46 | enviado | Bebidas Norte | S/ 90.00 | insumos
+03/10/2026 08:46 | enviado | Bebidas Norte | S/ 60.00 | insumos
 04/10/2026 08:40 | recibido | Sofia Medina | S/ 35.00 | aceite
 04/10/2026 17:15 | recibido | Hugo Valdez | S/ 6.50 | gaseosa
 04/10/2026 15:10 | recibido | Elena Paredes | S/ 22.00 | cafe
@@ -157,7 +157,7 @@
 07/10/2026 08:15 | recibido | Pedro Rojas | S/ 4.00 | huevos
 07/10/2026 10:55 | recibido | Berta Soto | S/ 8.00 | 
 07/10/2026 13:00 | recibido | Ana Huaman | S/ 12.00 | leche
-07/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 320.00 | mercaderia
+07/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 150.00 | mercaderia
 08/10/2026 20:15 | recibido | Irma Lazo | S/ 6.50 | gaseosa
 08/10/2026 19:10 | recibido | Luis Cardenas | S/ 15.00 | menu
 08/10/2026 13:40 | recibido | Carlos Mamani | S/ 15.00 | 
@@ -187,8 +187,8 @@
 12/10/2026 17:25 | recibido | Carlos Mamani | S/ 12.00 | gaseosa
 12/10/2026 21:04 | recibido | Mario Diaz | S/ 50.00 | para el cine
 12/10/2026 19:41 | enviado | Teresa Diaz | S/ 40.00 | cine
-12/10/2026 06:30 | enviado | Distribuidora Andina | S/ 320.00 | mercaderia
-12/10/2026 08:10 | enviado | Electro Sur | S/ 60.00 | luz local
+12/10/2026 06:30 | enviado | Distribuidora Andina | S/ 150.00 | mercaderia
+12/10/2026 08:10 | enviado | Electro Sur | S/ 40.00 | luz local
 13/10/2026 15:15 | recibido | Luis Cardenas | S/ 22.00 | menu
 13/10/2026 08:10 | recibido | Carlos Mamani | S/ 2.50 | almuerzo
 13/10/2026 13:40 | recibido | Lucia Torres | S/ 35.00 | cafe
@@ -219,7 +219,7 @@
 17/10/2026 11:15 | recibido | Walter Quiroz | S/ 8.00 | huevos
 17/10/2026 15:15 | recibido | Carlos Mamani | S/ 8.00 | leche
 17/10/2026 21:27 | recibido | Karen Diaz | S/ 150.00 | para mama
-17/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 320.00 | mercaderia
+17/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 150.00 | mercaderia
 18/10/2026 16:15 | recibido | Carlos Mamani | S/ 15.00 | pollo
 18/10/2026 11:25 | recibido | Luis Cardenas | S/ 12.00 | 
 18/10/2026 17:40 | recibido | Hugo Valdez | S/ 15.00 | 
@@ -241,14 +241,14 @@
 21/10/2026 14:15 | recibido | Jorge Salas | S/ 2.50 | almuerzo
 21/10/2026 09:25 | recibido | Lucia Torres | S/ 12.00 | torta
 21/10/2026 19:06 | enviado | Mario Diaz | S/ 20.00 | regalo cumple
-21/10/2026 08:38 | enviado | Ferreteria Sur | S/ 90.00 | bolsas
+21/10/2026 08:38 | enviado | Ferreteria Sur | S/ 60.00 | bolsas
 22/10/2026 19:00 | recibido | Luis Cardenas | S/ 15.00 | 
 22/10/2026 19:00 | recibido | Berta Soto | S/ 4.00 | pedido
 22/10/2026 19:40 | recibido | Elena Paredes | S/ 15.00 | almuerzo
 22/10/2026 20:40 | recibido | Raul Campos | S/ 8.00 | torta
 22/10/2026 20:40 | recibido | Pedro Rojas | S/ 22.00 | leche
 22/10/2026 07:40 | recibido | Elena Paredes | S/ 35.00 | leche
-22/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 180.00 | mercaderia
+22/10/2026 06:30 | enviado | Abarrotes El Sol | S/ 90.00 | mercaderia
 23/10/2026 14:10 | recibido | Hugo Valdez | S/ 12.00 | leche
 23/10/2026 11:00 | recibido | Luis Cardenas | S/ 2.50 | 
 23/10/2026 10:40 | recibido | Sofia Medina | S/ 15.00 | torta
@@ -282,7 +282,7 @@
 27/10/2026 10:40 | recibido | Elena Paredes | S/ 4.00 | almuerzo
 27/10/2026 11:40 | recibido | Irma Lazo | S/ 15.00 | arroz
 27/10/2026 10:10 | recibido | Hugo Valdez | S/ 35.00 | gaseosa
-27/10/2026 06:30 | enviado | Bebidas Norte | S/ 250.00 | mercaderia
+27/10/2026 06:30 | enviado | Bebidas Norte | S/ 120.00 | mercaderia
 28/10/2026 07:40 | recibido | Hugo Valdez | S/ 8.00 | torta
 28/10/2026 11:25 | recibido | Carlos Mamani | S/ 12.00 | huevos
 28/10/2026 11:25 | recibido | Nelly Ccori | S/ 4.00 | arroz
@@ -305,7 +305,7 @@
 30/10/2026 18:40 | recibido | Irma Lazo | S/ 15.00 | huevos
 30/10/2026 13:55 | recibido | Ana Huaman | S/ 8.00 | torta
 30/10/2026 19:48 | enviado | Mario Diaz | S/ 40.00 | salida con amigos
-30/10/2026 08:35 | enviado | Don Teo | S/ 450.00 | alquiler local
+30/10/2026 08:35 | enviado | Don Teo | S/ 90.00 | alquiler local
 31/10/2026 13:15 | recibido | Marta Vega | S/ 35.00 | leche
 31/10/2026 19:15 | recibido | Luis Cardenas | S/ 15.00 | pollo
 31/10/2026 08:10 | recibido | Elena Paredes | S/ 6.50 | gaseosa
@@ -321,7 +321,7 @@
 01/11/2026 16:55 | recibido | Elena Paredes | S/ 2.50 | cafe
 01/11/2026 11:10 | recibido | Elena Paredes | S/ 35.00 | leche
 01/11/2026 14:40 | recibido | Lucia Torres | S/ 6.50 | leche
-01/11/2026 06:30 | enviado | Distribuidora Andina | S/ 250.00 | mercaderia
+01/11/2026 06:30 | enviado | Distribuidora Andina | S/ 120.00 | mercaderia
 02/11/2026 12:25 | recibido | Rosa Quispe | S/ 2.50 | gaseosa
 02/11/2026 07:00 | recibido | Carlos Mamani | S/ 15.00 | cafe
 02/11/2026 09:00 | recibido | Rosa Quispe | S/ 35.00 | pan
@@ -356,7 +356,7 @@
 06/11/2026 18:55 | recibido | Ana Huaman | S/ 12.00 | huevos
 06/11/2026 17:10 | recibido | Rosa Quispe | S/ 12.00 | huevos
 06/11/2026 13:10 | recibido | Luis Cardenas | S/ 35.00 | torta
-06/11/2026 06:30 | enviado | Bebidas Norte | S/ 320.00 | mercaderia
+06/11/2026 06:30 | enviado | Bebidas Norte | S/ 150.00 | mercaderia
 07/11/2026 07:25 | recibido | Carlos Mamani | S/ 4.00 | pollo
 07/11/2026 15:40 | recibido | Walter Quiroz | S/ 2.50 | leche
 07/11/2026 08:15 | recibido | Jorge Salas | S/ 35.00 | 
@@ -370,7 +370,7 @@
 08/11/2026 14:00 | recibido | Rosa Quispe | S/ 6.50 | huevos
 08/11/2026 10:40 | recibido | Nelly Ccori | S/ 22.00 | pedido
 08/11/2026 19:14 | enviado | Teresa Diaz | S/ 40.00 | cine
-08/11/2026 08:55 | enviado | Don Teo | S/ 90.00 | alquiler local
+08/11/2026 08:55 | enviado | Don Teo | S/ 60.00 | alquiler local
 09/11/2026 08:10 | recibido | Hugo Valdez | S/ 4.00 | pan
 09/11/2026 18:55 | recibido | Carlos Mamani | S/ 22.00 | arroz
 09/11/2026 18:25 | recibido | Lucia Torres | S/ 35.00 | gaseosa

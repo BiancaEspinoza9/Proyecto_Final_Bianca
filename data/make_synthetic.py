@@ -34,10 +34,10 @@ def main() -> None:
         if rng.random() < 0.3:  # gasto personal
             lineas.append(f"{f} 19:{rng.randint(0, 59):02d} | enviado | {rng.choice(FAMILIA)} | S/ {rng.choice([20, 40, 60]):.2f} | {rng.choice(NOTAS_FAMILIA_OUT)}")
         if d % 5 == 0:  # compra de mercaderia
-            lineas.append(f"{f} 06:30 | enviado | {rng.choice(PROVEEDORES)} | S/ {rng.choice([180, 250, 320]):.2f} | mercaderia")
+            lineas.append(f"{f} 06:30 | enviado | {rng.choice(PROVEEDORES)} | S/ {rng.choice([90, 120, 150]):.2f} | mercaderia")
         if d % 9 == 3:  # gasto fijo / insumos
             prov, nota = rng.choice(GASTOS_NEGOCIO)
-            lineas.append(f"{f} 08:{rng.randint(0, 59):02d} | enviado | {prov} | S/ {rng.choice([35, 60, 90, 450]):.2f} | {nota}")
+            lineas.append(f"{f} 08:{rng.randint(0, 59):02d} | enviado | {prov} | S/ {rng.choice([25, 40, 60, 90]):.2f} | {nota}")
         if rng.random() < 0.15:  # caso ambiguo sin nota
             lineas.append(f"{f} 17:{rng.randint(0, 59):02d} | recibido | Diego Alarcon | S/ {rng.choice([30, 45, 80]):.2f} |")
     salida = Path(__file__).parent / "sample_movimientos.txt"
