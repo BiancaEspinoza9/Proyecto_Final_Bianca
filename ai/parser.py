@@ -21,6 +21,9 @@ LINE = re.compile(
 
 LLM_MODEL = "claude-haiku-5-5"
 
+# Cuando el nombre no es legible (o fue tapado por privacidad en la captura)
+SIN_NOMBRE = "(sin nombre)"
+
 TOOL = {
     "name": "registrar_movimientos",
     "description": "Registra los movimientos de Yape/Plin encontrados en el texto.",

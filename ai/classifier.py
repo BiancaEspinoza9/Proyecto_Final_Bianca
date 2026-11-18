@@ -9,7 +9,16 @@ from __future__ import annotations
 from collections import Counter
 from dataclasses import asdict
 
-from .parser import Movimiento
+from .parser import SIN_NOMBRE, Movimiento
+
+
+def clave_label(m: Movimiento) -> tuple[str, str]:
+    """Con que clave se recuerda la respuesta del usuario.
+    Por persona; pero si no hay nombre, solo para ese movimiento (no mezclar a desconocidos)."""
+    if m.contraparte == SIN_NOMBRE:
+        return (m.tipo, f"{SIN_NOMBRE} {m.fecha} {m.hora}")
+    return (m.tipo, m.contraparte.lower())
+
 
 KW_VENTA = ("pan", "almuerzo", "menu", "menú", "gaseosa", "pollo", "pedido", "venta", "pago",
             "huevos", "arroz", "aceite", "leche", "cafe", "café", "torta", "delivery")
@@ -29,10 +38,11 @@ def _tiene(nota: str, palabras: tuple[str, ...]) -> bool:
 def clasificar(movs: list[Movimiento], labels: dict | None = None) -> list[dict]:
     """labels: {(tipo, contraparte_en_minusculas): categoria} que el usuario ya confirmo."""
     labels = labels or {}
-    recibidos = Counter(m.contraparte.lower() for m in movs if m.tipo == "recibido")
+    recibidos = Counter(m.contraparte.lower() for m in movs
+                        if m.tipo == "recibido" and m.contraparte != SIN_NOMBRE)
     filas: list[dict] = []
     for m in movs:
-        clave = (m.tipo, m.contraparte.lower())
+        clave = clave_label(m)
         if clave in labels:
             cat, motivo = labels[clave], "confirmado por ti antes"
         elif _tiene(m.nota, KW_PERSONAL):
@@ -41,7 +51,8 @@ def clasificar(movs: list[Movimiento], labels: dict | None = None) -> list[dict]
             cat, motivo = "gasto_negocio", f"la nota '{m.nota}' parece un gasto del negocio"
         elif m.tipo == "recibido" and _tiene(m.nota, KW_VENTA):
             cat, motivo = "venta", f"la nota '{m.nota}' parece una venta"
-        elif m.tipo == "recibido" and recibidos[m.contraparte.lower()] >= 3 and m.monto <= 60:
+        elif (m.tipo == "recibido" and m.contraparte != SIN_NOMBRE
+              and recibidos[m.contraparte.lower()] >= 3 and m.monto <= 60):
             cat, motivo = "venta", "paga seguido montos chicos: parece cliente"
         else:
             cat, motivo = "dudoso", "sin pistas suficientes"

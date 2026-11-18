@@ -6,11 +6,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from datetime import date
+
 import pandas as pd
 import streamlit as st
 
-from ai.classifier import CATEGORIAS, clasificar
-from ai.parser import parse
+from ai.classifier import CATEGORIAS, clasificar, clave_label
+from ai.parser import Movimiento, parse
 from ai.report import a_dataframe, por_dia, resumen
 
 SAMPLE = Path(__file__).resolve().parents[1] / "data" / "sample_movimientos.txt"
@@ -24,19 +26,35 @@ if "labels" not in st.session_state:
 
 with st.sidebar:
     st.header("1. Tu historial")
-    fuente = st.radio("Origen", ["Datos de ejemplo", "Pegar texto"])
+    fuente = st.radio("Origen", ["Subir captura de Yape", "Datos de ejemplo", "Pegar texto"])
     usar_llm = st.checkbox("Usar LLM para lineas que no entiendo", value=False,
                            help="Requiere ANTHROPIC_API_KEY en el entorno.")
     if st.button("Olvidar lo que confirme"):
         st.session_state.labels = {}
 
-if fuente == "Datos de ejemplo":
-    texto = SAMPLE.read_text(encoding="utf-8") if SAMPLE.exists() else ""
-else:
-    texto = st.text_area("Pega aqui los movimientos (una linea por movimiento)", height=200,
-                         placeholder="12/10/2026 08:15 | recibido | Rosa Quispe | S/ 6.50 | pan")
+@st.cache_data(show_spinner="Leyendo la captura en tu computador...")
+def leer_captura_cacheada(datos: bytes, dia_captura: date):
+    from ai.ocr import parse_captura  # import perezoso: carga el OCR solo si se usa
+    return parse_captura(datos, dia_captura)
 
-movs, no_leidas = parse(texto, use_llm=usar_llm)
+
+movs, no_leidas = [], []
+if fuente == "Subir captura de Yape":
+    dia = st.sidebar.date_input("¿Qué día tomaste la captura? (para entender 'Ayer')", value=date.today())
+    st.sidebar.caption("La captura se lee en tu computador: no se envía a ningún servidor.")
+    archivos = st.file_uploader("Sube la(s) captura(s) de la pantalla 'Movimientos' de Yape",
+                                type=["png", "jpg", "jpeg"], accept_multiple_files=True)
+    for archivo in archivos or []:
+        m, n = leer_captura_cacheada(archivo.getvalue(), dia)
+        movs.extend(m)
+        no_leidas.extend(n)
+else:
+    if fuente == "Datos de ejemplo":
+        texto = SAMPLE.read_text(encoding="utf-8") if SAMPLE.exists() else ""
+    else:
+        texto = st.text_area("Pega aqui los movimientos (una linea por movimiento)", height=200,
+                             placeholder="12/10/2026 08:15 | recibido | Rosa Quispe | S/ 6.50 | pan")
+    movs, no_leidas = parse(texto, use_llm=usar_llm)
 if not movs:
     st.info("Carga o pega un historial para empezar.")
     st.stop()
@@ -69,7 +87,9 @@ else:
     )
     if st.button("Aplicar mis respuestas"):
         for _, fila in editado.dropna(subset=["tu_respuesta"]).iterrows():
-            st.session_state.labels[(fila["tipo"], fila["contraparte"].lower())] = fila["tu_respuesta"]
+            mov = Movimiento(fila["fecha"], fila["hora"], fila["tipo"], fila["contraparte"],
+                             float(fila["monto"]), fila["nota"])
+            st.session_state.labels[clave_label(mov)] = fila["tu_respuesta"]
         st.rerun()
 
 st.subheader("3. Ventas y gastos por dia")
