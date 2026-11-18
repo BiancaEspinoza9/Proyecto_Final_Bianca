@@ -9,10 +9,10 @@ Ayudamos a comerciantes pequeños que cobran por Yape a separar lo del negocio d
 **Bianca Espinoza** — estudiante de Economía, Universidad del Pacífico. PENDIENTE: foto y una línea de por qué soy la persona indicada; cómo cubro producto, ingeniería, diseño y ventas con agentes de IA.
 
 ## 3. Problema
-- **Quién lo sufre:** PENDIENTE (definir con precisión tras las entrevistas; hipótesis: bodegas y puestos de comida que cobran por Yape/Plin y usan la misma cuenta para sus gastos personales).
-- **Cuánto les cuesta:** PENDIENTE (horas al mes, errores, plata). Medir en las entrevistas.
-- **Cómo lo resuelven hoy:** PENDIENTE (hipótesis: de memoria, cuaderno, Excel).
-- **Evidencia:** PENDIENTE: 3 conversaciones en [`docs/research/`](docs/research/) (plantilla en `plantilla_entrevista.md`).
+- **Quién lo sufre:** dueños de negocios pequeños que cobran buena parte de sus ventas por Yape/Plin y usan la **misma cuenta** para lo personal y el negocio (en las 3 conversaciones: una bodega, un emprendimiento de postres por Instagram y un negocio con clientes que "casi todos pagan por Yape").
+- **Cuánto les cuesta:** entre **2 y 5 horas al mes** ordenando sus movimientos (promedio ~3.5 h), y errores: "a veces se me pasan algunas" ventas, o no saben a qué pedido corresponde un pago.
+- **Cómo lo resuelven hoy:** cuaderno, Excel, revisar el Yape a mano, pedir capturas al cliente o buscar su nombre en los chats.
+- **Evidencia:** 3 conversaciones por WhatsApp en [`docs/research/`](docs/research/) ([resumen](docs/research/resumen.md)). Es una muestra pequeña de conocidos: confirma que el problema existe, no mide el mercado.
 
 ## 4. Solución e insight
 Flujo único: historial de Yape → movimientos estructurados → clasificación **venta / gasto del negocio / personal / dudoso** → el comerciante confirma solo lo dudoso (el sistema recuerda su respuesta por persona) → reporte de ventas, gastos y utilidad.
@@ -45,7 +45,9 @@ historial (texto) ──► parser (reglas → LLM si hace falta) ──► veri
 ```
 
 ## 7. Modelo de negocio
-PENDIENTE: precio concreto (máx. 3 planes) a validar en las entrevistas ("¿pagarías S/ X al mes?"). Costo por usuario: PENDIENTE de medir (reglas = ~S/ 0; LLM solo en líneas no reconocidas).
+- **Quién paga:** el dueño del negocio.
+- **Precio (hipótesis):** **S/ 15 al mes**. En las entrevistas dijeron S/ 5 a 10 (tras probar), ~S/ 15 y hasta S/ 25 (si además separa gastos y calcula ganancia). Son 3 respuestas habladas, no pagos reales: el precio hay que validarlo con uso real.
+- **Costo por usuario:** PENDIENTE de medir. El clasificador por reglas casi no tiene costo; el LLM solo se usa en las líneas que las reglas no entienden.
 
 ## 8. Herramientas del curso
 | Herramienta | Dónde |
