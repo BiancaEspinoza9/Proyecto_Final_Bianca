@@ -63,6 +63,13 @@ if fuente == "Subir captura de Yape":
         m, n = leer_captura_cacheada(archivo.getvalue(), dia)
         movs.extend(m)
         no_leidas.extend(n)
+    completar_demo = st.sidebar.checkbox(
+        "Completar con historial FICTICIO de ejemplo", value=True,
+        help="Una captura trae pocos días. Esto agrega ~190 movimientos inventados (bodega 'Don Lucho') "
+             "para que el reporte y el gráfico se vean completos. Desmárcalo para ver solo tu captura.")
+    if completar_demo and movs:
+        from ai.demo import completar
+        movs = completar(movs)
 else:
     if fuente == "Datos de ejemplo":
         texto = SAMPLE.read_text(encoding="utf-8") if SAMPLE.exists() else ""
@@ -81,6 +88,12 @@ if no_leidas:
 df = a_dataframe(clasificar(movs, st.session_state.labels, familia))
 r = resumen(df)
 
+n_fict = int((df["origen"] == "ficticio").sum())
+if n_fict:
+    st.warning(f"Esta vista incluye **{n_fict} movimientos FICTICIOS** (datos de ejemplo inventados) junto con "
+               f"{len(df) - n_fict} de tu captura. Las cifras mezclan ambos. "
+               "Para ver solo tu captura, desmarca la opción en la barra lateral.")
+
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Ventas del negocio", f"S/ {r['ventas']:,.2f}")
 c2.metric("Gastos del negocio", f"S/ {r['gastos']:,.2f}")
@@ -93,7 +106,7 @@ if dudosos.empty:
     st.success("No hay movimientos dudosos.")
 else:
     st.caption("Tu respuesta se recuerda por persona: la proxima vez no se vuelve a preguntar.")
-    editor = dudosos[["fecha", "hora", "tipo", "contraparte", "monto", "nota"]].copy()
+    editor = dudosos[["origen", "fecha", "hora", "tipo", "contraparte", "monto", "nota"]].copy()
     # Sugerencias para que solo corrijas excepciones (son una adivinanza, no un dato).
     st.caption("Ya puse una sugerencia: lo que recibes suele ser venta. Cámbiala donde no sea cierto.")
     rapido = st.selectbox("Atajo para lo que ENVIASTE", ["(elegir uno por uno)", "personal", "gasto_negocio"])
@@ -103,7 +116,7 @@ else:
     editado = st.data_editor(
         editor, hide_index=True, width="stretch", key=f"editor_dudosos_{rapido}",
         column_config={"tu_respuesta": st.column_config.SelectboxColumn("¿Qué es?", options=CATEGORIAS)},
-        disabled=["fecha", "hora", "tipo", "contraparte", "monto", "nota"],
+        disabled=["origen", "fecha", "hora", "tipo", "contraparte", "monto", "nota"],
     )
     if st.button("Aplicar mis respuestas"):
         for _, fila in editado.dropna(subset=["tu_respuesta"]).iterrows():

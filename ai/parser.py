@@ -59,6 +59,7 @@ class Movimiento:
     contraparte: str
     monto: float
     nota: str = ""
+    origen: str = "captura"  # "captura" (real, del usuario) | "ficticio" (datos de ejemplo)
 
 
 def _monto(texto: str) -> float:

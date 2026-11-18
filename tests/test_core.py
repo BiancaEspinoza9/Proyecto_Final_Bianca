@@ -78,6 +78,15 @@ def test_lista_de_familia_marca_personal():
     assert clasificar([m], familia={"teresa diaz"})[0]["categoria"] == "personal"
 
 
+def test_completar_marca_lo_ficticio_y_no_toca_lo_real():
+    from ai.demo import completar
+    from ai.parser import Movimiento
+    real = Movimiento("16/11/2026", "14:24", "enviado", "(sin nombre)", 34.0)
+    todo = completar([real])
+    assert todo[-1] is real and real.origen == "captura"
+    assert len(todo) > 100 and all(m.origen == "ficticio" for m in todo[:-1])
+
+
 def test_resumen_excluye_personal_y_dudoso():
     movs, _ = parse_rules(TXT)
     r = resumen(a_dataframe(clasificar(movs)))
