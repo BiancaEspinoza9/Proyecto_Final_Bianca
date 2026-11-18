@@ -18,6 +18,15 @@ from ai.report import a_dataframe, por_dia, resumen
 SAMPLE = Path(__file__).resolve().parents[1] / "data" / "sample_movimientos.txt"
 
 st.set_page_config(page_title="Yape Contable", page_icon="🧾", layout="wide")
+
+# Evita que el traductor automatico del navegador rompa la pagina (error 'removeChild').
+st.components.v1.html(
+    "<script>const d = window.parent.document;"
+    "d.documentElement.setAttribute('translate','no'); d.documentElement.classList.add('notranslate');"
+    "if(!d.querySelector('meta[name=google]')){const m=d.createElement('meta');"
+    "m.name='google'; m.content='notranslate'; d.head.appendChild(m);}</script>",
+    height=0,
+)
 st.title("🧾 Yape Contable")
 st.caption("Separa lo del negocio de lo personal en tu historial de Yape. Datos de demo: inventados.")
 
