@@ -23,7 +23,7 @@ Insight (hipótesis a validar): el problema no es leer el historial, sino que es
 *Borrador, a revisar por la founder.* Hace pocos años, leer una captura exigía un servicio de pago en la nube o entrenar un modelo propio. Hoy hay OCR abierto que corre en la laptop (sin enviar la captura a ningún servidor) y LLM pequeños que ordenan texto desordenado en JSON. Además, casi todo el cobro de estos negocios ya pasa por Yape/Plin (entrevistas: 40 % a 90 % de sus ventas), así que el historial digital ya contiene la información, solo que mezclada.
 
 ## 6. Demo
-- **URL pública:** PENDIENTE (despliegue previsto en Streamlit Community Cloud).
+- **URL pública:** https://yape-contable.streamlit.app (Streamlit Community Cloud). Puede tardar unos segundos en despertar si nadie la ha abierto.
 - **Correr en local:**
   ```bash
   pip install -r requirements.txt
@@ -34,7 +34,7 @@ Insight (hipótesis a validar): el problema no es leer el historial, sino que es
 - **Capturas y diagrama:** PENDIENTE en `docs/`.
 - **Datos:** el origen "Datos de ejemplo" es 100 % sintético (nombres inventados). La lectura de capturas se probó con **una captura real propia** (11 de 11 movimientos leídos correctamente), con los nombres tapados; esa captura no se sube al repo. No se usan datos de terceros.
 - **Modelos y por qué:**
-  - **RapidOCR (ONNX), local:** lee la captura en la laptop porque el historial es información financiera y no debe salir de ahí; además no requiere clave ni tiene costo.
+  - **RapidOCR (ONNX), sin API externa:** corre dentro de la propia app, sin clave ni costo. Si la app se ejecuta en la laptop, la captura no sale de ella (importante porque el historial es información financiera). En la URL pública se procesa en el servidor de Streamlit, por eso allí solo deben subirse capturas de ejemplo o con nombres tapados.
   - **Reglas propias** para clasificar: son predecibles y se pueden explicar ("lo clasifiqué así porque...").
   - **LLM de Anthropic (`claude-haiku-5-5`)**, opcional, con salida estructurada para líneas que las reglas no entienden, y con verificación literal de lo que devuelve. No se ha probado contra la API real.
 

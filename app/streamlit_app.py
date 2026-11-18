@@ -54,7 +54,9 @@ def leer_captura_cacheada(datos: bytes, dia_captura: date):
 movs, no_leidas = [], []
 if fuente == "Subir captura de Yape":
     dia = st.sidebar.date_input("¿Qué día tomaste la captura? (para entender 'Ayer')", value=date.today())
-    st.sidebar.caption("La captura se lee en tu computador: no se envía a ningún servidor.")
+    st.sidebar.caption("Privacidad: en la versión en línea la captura se procesa en el servidor de Streamlit. "
+                       "Usa capturas de ejemplo o con los nombres tapados. Si corres la app en tu "
+                       "computador, la captura no sale de él.")
     archivos = st.file_uploader("Sube la(s) captura(s) de la pantalla 'Movimientos' de Yape",
                                 type=["png", "jpg", "jpeg"], accept_multiple_files=True)
     for archivo in archivos or []:
